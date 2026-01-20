@@ -7,19 +7,18 @@ import java.util.Scanner;
 
 import static java.nio.file.StandardOpenOption.CREATE;
 
-public class PersonWriter {
+public class ProductWriter {
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
-        Person perp;
-        ArrayList<Person> recs = new ArrayList<>();
+        ArrayList<String> recs = new ArrayList<>();
 
         String id;
-        String firstname;
-        String lastname;
-        String title;
-        int yob;
-
+        String productname;
+        String description;
+        int cost;
         String rec;
+
+
 
 
 
@@ -27,23 +26,24 @@ public class PersonWriter {
 
         do {
             id = SafeInput.getNonZeroLenString(in, "Enter ID");
-            firstname = SafeInput.getNonZeroLenString(in, "what is your First name");
-            lastname = SafeInput.getNonZeroLenString(in, "what is your Last name");
-            title = SafeInput.getNonZeroLenString(in, "Enter title");
-            yob = SafeInput.getInt(in, "Enter Year of Birth");
+            productname = SafeInput.getNonZeroLenString(in, "what product");
+            description = SafeInput.getNonZeroLenString(in, "description of product");
+            cost = SafeInput.getInt(in, "Enter cost of product");
 
-            perp = new Person (id, firstname, lastname, title, yob);
+
+
+            rec = id + "," + productname + "," + description + "," + cost;
 
             //System.out.println(rec);
 
-            recs.add(perp);
+            recs.add(rec);
 
             done = SafeInput.getYNConfirm(in, "Are you done?");
 
         } while (!done);
 
         File workingDirectory = new File(System.getProperty("user.dir"));
-        Path file = Paths.get(workingDirectory.getPath() + "\\src\\PersonTestdata.txt");
+        Path file = Paths.get(workingDirectory.getPath() + "\\src\\Productdata.txt");
 
         try {
             // Typical java pattern of inherited classes
@@ -55,8 +55,8 @@ public class PersonWriter {
 
             // Finally can write the file LOL!
 
-            for ( Person r : recs ) {
-                writer.write(r.toCSVDataString(), 0, r.toCSVDataString().length());  // stupid syntax for write rec
+            for ( String r : recs ) {
+                writer.write(r, 0, r.length());  // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // rec. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line
