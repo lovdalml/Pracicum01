@@ -9,36 +9,35 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class PersonWriter {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        Person perp;
-        ArrayList<Person> recs = new ArrayList<>();
 
-        String id;
-        String firstname;
-        String lastname;
-        String title;
-        int yob;
-
-        String rec;
-
-
-
+        String ID = "";
+        String fName = "";
+        String lName = "";
+        String title = "";
+        int yob = 0;
+        String csvRec = "";
         boolean done = false;
 
-        do {
-            id = SafeInput.getNonZeroLenString(in, "Enter ID");
-            firstname = SafeInput.getNonZeroLenString(in, "what is your First name");
-            lastname = SafeInput.getNonZeroLenString(in, "what is your Last name");
-            title = SafeInput.getNonZeroLenString(in, "Enter title");
-            yob = SafeInput.getInt(in, "Enter Year of Birth");
+        Scanner in = new Scanner(System.in);
+        SafeInputObject sio = new SafeInputObject();
 
-            perp = new Person (id, firstname, lastname, title, yob);
+        ArrayList<Person> perps = new ArrayList<>();
+        Person perp;
+
+        do {
+            ID = sio.getNonZeroLenghtString( "Enter your ID");
+            fName = sio.getNonZeroLenghtString( "what is your First name");
+            lName = sio.getNonZeroLenghtString( "what is your Last name");
+            title = sio.getNonZeroLenghtString( "Enter title");
+            yob = sio.getRangedInt( "Enter the year for the Age calc" , 1900, 2024);
+
+            perp = new Person (ID, fName, lName, title, yob);
 
             //System.out.println(rec);
 
-            recs.add(perp);
+            perps.add(perp);
 
-            done = SafeInput.getYNConfirm(in, "Are you done?");
+            done = sio.getYNConfirm( "Are you done?");
 
         } while (!done);
 
@@ -55,8 +54,9 @@ public class PersonWriter {
 
             // Finally can write the file LOL!
 
-            for ( Person r : recs ) {
-                writer.write(r.toCSVDataString(), 0, r.toCSVDataString().length());  // stupid syntax for write rec
+            for ( Person p : perps ) {
+                csvRec = p.toCSVDataString();
+                writer.write(csvRec, 0, csvRec.length()); // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // rec. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line

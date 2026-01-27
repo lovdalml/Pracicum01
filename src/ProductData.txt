@@ -1,3 +1,2 @@
-0001,chesse,yellow thing,1
-0002,bread,loaf of bread,2
-0003,hotdog,long thing of meat,4
+00001,cheese,very cheese,1
+00002,bread,loaf of bread,2

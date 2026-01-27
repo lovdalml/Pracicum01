@@ -9,36 +9,35 @@ import static java.nio.file.StandardOpenOption.CREATE;
 
 public class ProductWriter {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        ArrayList<String> recs = new ArrayList<>();
 
-        String id;
-        String productname;
-        String description;
-        int cost;
-        String rec;
-
-
-
-
-
+        String ID = "";
+        String pName = "";
+        String descript = "";
+        int Cost = 0;
+        String csvRec = "";
         boolean done = false;
 
+        Scanner in = new Scanner(System.in);
+        SafeInputObject sio = new SafeInputObject();
+
+        ArrayList<Product> prods = new ArrayList<>();
+        Product prod;
+
         do {
-            id = SafeInput.getNonZeroLenString(in, "Enter ID");
-            productname = SafeInput.getNonZeroLenString(in, "what product");
-            description = SafeInput.getNonZeroLenString(in, "description of product");
-            cost = SafeInput.getInt(in, "Enter cost of product");
+            ID = sio.getNonZeroLenghtString( "Enter ID");
+            pName = sio.getNonZeroLenghtString( "what product");
+            descript = sio.getNonZeroLenghtString( "description of product");
+            Cost = sio.getRangedInt("Enter cost of product" , 0 , 5);
 
 
 
-            rec = id + "," + productname + "," + description + "," + cost;
+            prod = new Product(ID ,  pName , descript , Cost);
 
             //System.out.println(rec);
 
-            recs.add(rec);
+            prods.add(prod);
 
-            done = SafeInput.getYNConfirm(in, "Are you done?");
+            done = sio.getYNConfirm( "Are you done?");
 
         } while (!done);
 
@@ -55,8 +54,9 @@ public class ProductWriter {
 
             // Finally can write the file LOL!
 
-            for ( String r : recs ) {
-                writer.write(r, 0, r.length());  // stupid syntax for write rec
+            for ( Product p : prods ) {
+                csvRec = p.toCSVDataString();
+                writer.write(csvRec, 0, csvRec.length()); // stupid syntax for write rec
                 // 0 is where to start (1st char) the write
                 // rec. length() is how many chars to write (all)
                 writer.newLine();  // adds the new line

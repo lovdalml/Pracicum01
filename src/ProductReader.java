@@ -16,8 +16,8 @@ public class ProductReader {
 
         final int FIELDS_LENGTH = 4;
 
-        String id, productname, description;
-        int cost;
+        String ID, pName, descript;
+        int Cost;
 
         try {
 
@@ -50,12 +50,12 @@ public class ProductReader {
                 for (String l : lines) {
                     fields = l.split(",");
                     if (fields.length == FIELDS_LENGTH) {
-                        id = fields[0].trim();
-                        productname = fields[1].trim();
-                        description = fields[2].trim();
-                        cost = Integer.parseInt(fields[3].trim());
+                        ID = fields[0].trim();
+                        pName = fields[1].trim();
+                        descript = fields[2].trim();
+                        Cost = Integer.parseInt(fields[3].trim());
 
-                        System.out.printf("\n%-8s%-25s%-25s%-6s%n", id, description, productname, cost);
+                        System.out.printf("\n%-8s%-25s%-25s%-6s%n", ID, descript, pName, Cost);
                     } else {
                         System.out.printf("\nError with record: (expected " + FIELDS_LENGTH + "fields, got" + fields.length + "): " + l);
                     }
