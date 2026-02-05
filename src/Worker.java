@@ -1,6 +1,7 @@
 public class Worker extends Person {
     private double hourlyPayRate;
 
+
     public Worker(String IDNum, String firstName, String lastName, String title, int yob, double hourlyPayRate) {
         super(IDNum, firstName, lastName, title, yob);
         this.hourlyPayRate = hourlyPayRate;

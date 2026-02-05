@@ -56,6 +56,7 @@ public class Person {
         return "{ \"IDNum\": \"" + IDNum + "\", \"firstName\": \"" + firstName + "\", \"lastName\": \"" + lastName + "\", \"title\": \"" + title + "\", \"yob\": " + yob + " }";
     }
 
+
     public String toXMLDataString() {
         return "<Person>\n" +
                 "  <IDNum>" + IDNum + "</IDNum>\n" +

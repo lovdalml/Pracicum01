@@ -4,17 +4,16 @@ public class Main {
     public static void main(String[] args) {
         ArrayList<Worker> workers = new ArrayList<>();
 
-        // Create 3 regular workers with hourly rates
+
         Worker w1 = new Worker("Worker1", "John", "Smith", "Mr.", 1990, 20.00);
         Worker w2 = new Worker("Worker2", "Sarah", "Johnson", "Ms.", 1985, 25.00);
         Worker w3 = new Worker("Worker3", "Michael", "Brown", "Mr.", 1992, 30.00);
 
-        // Create 3 salary workers with annual salaries
+
         SalaryWorker sw1 = new SalaryWorker("SalWorker1", "Emily", "Davis", "Dr.", 1988, 70000);
         SalaryWorker sw2 = new SalaryWorker("SalWorker2", "David", "Wilson", "Mr.", 1983, 90000);
         SalaryWorker sw3 = new SalaryWorker("SalWorker3", "Jennifer", "Martinez", "Ms.", 1991, 80000);
 
-        // Add all workers to the ArrayList
         workers.add(w1);
         workers.add(w2);
         workers.add(w3);
@@ -22,7 +21,7 @@ public class Main {
         workers.add(sw2);
         workers.add(sw3);
 
-        // Display all workers
+
         System.out.println("=".repeat(80));
         System.out.println("Workers");
         System.out.println("=".repeat(80));
@@ -31,7 +30,7 @@ public class Main {
         }
         System.out.println();
 
-        // Simulate 3 weeks of pay
+
         int[] weeklyHours = {40, 50, 40};
         String[] weekDescriptions = {
                 "Week 1 - Regular Hours (40 hours)",
@@ -39,7 +38,7 @@ public class Main {
                 "Week 3 - Back to Normal (40 hours)"
         };
 
-        // Loop through each week
+
         for (int week = 0; week < 3; week++) {
             System.out.println("=".repeat(80));
             System.out.println(weekDescriptions[week]);
@@ -49,7 +48,6 @@ public class Main {
 
             double totalWeeklyPay = 0;
 
-            // Calculate and display pay for each worker
             for (Worker worker : workers) {
                 double pay = worker.calculateWeeklyPay(weeklyHours[week]);
                 System.out.println(worker.displayWeeklyPay(weeklyHours[week]));
@@ -61,7 +59,6 @@ public class Main {
             System.out.println();
         }
 
-        // Summary table showing all three weeks side by side
         System.out.println("=".repeat(100));
         System.out.println("THREE-WEEK PAYROLL SUMMARY");
         System.out.println("=".repeat(100));

@@ -17,8 +17,7 @@ public class SalaryWorker extends Worker {
 
     @Override
     public double calculateWeeklyPay(double hoursWorked) {
-        // Salary workers get the same pay regardless of hours worked
-        // Annual salary divided by 52 weeks
+
         return annualSalary / 52.0;
     }
 
